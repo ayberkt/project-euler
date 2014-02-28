@@ -1,9 +1,12 @@
-from math import sqrt
-import time
+# This program will eventually implement a solution for the
+# 50th Project Euler problem
+
+import math
 
 def nextPrime(n):
     if isPrime(n): n+= 1
     while not isPrime(n):
+        sqrtSet = range(2, int(math.sqrt(n))+2)
         if n%2 == 0:
             n += 1
         else:
@@ -12,26 +15,45 @@ def nextPrime(n):
 
 def isPrime(n):
     if n == 2: return True
-    sqrtSet = range(2, int(sqrt(n))+2)
+    sqrtSet = range(2, int(math.sqrt(n))+2)
     for i in sqrtSet:
         if n%i == 0: return False
     return True
 
-time.clock()
-primes = []
-total = 0
-i = 1
+def consecPrimeSums(upTo):
+	primeSums = [5]
+	prime = 5
+	while True:
+		newSum = primeSums[-1] + prime
+		prime = nextPrime(prime)
+		if not newSum > upTo:
+			primeSums.append(newSum)
+		else:
+			return primeSums
 
-while sum(primes) + nextPrime(i) < 1000000:
-    i = nextPrime(i)
-    primes.append(i)
 
-total = sum(primes)
+# while True:
+# 	primeSum = sumConsecPrimes(i)
+# 	if primeSum >= 1000000000:
+# 		break
+# 	primeSums.append(primeSum)
+# 	i += 1
+# # print primeSums
 
-for i in primes:
-    total -= i
-    if isPrime(total):
-        break
+primeSums = consecPrimeSums(1000)
 
-print total
-print time.clock()
+print primeSums
+
+for i in primeSums:
+	if i != primeSums[-1]:
+		diff = primeSums[primeSums.index(i)+1] - i
+		print diff, isPrime(diff)
+	# if isPrime(i):
+		# print i, isPrime(i)
+
+# print primeSums
+
+
+
+
+
