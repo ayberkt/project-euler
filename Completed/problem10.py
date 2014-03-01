@@ -1,6 +1,6 @@
 import math
 
-def buildSieve(limit):
+def build_sieve(limit):
 
     factors = [2]
 
@@ -14,5 +14,5 @@ def buildSieve(limit):
 
 while True:
     number = int(raw_input("Please input a number: "))
-    sieve = buildSieve(number) # Passes the sqrt of the number as the limit for sieve building.
+    sieve = build_sieve(number) # Passes the sqrt of the number as the limit for sieve building.
     print (sum(sieve))
