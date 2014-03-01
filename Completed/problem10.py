@@ -1,11 +1,6 @@
-# This program implements a solution for the 3rd problem of Project Euler
-
 import math
-import datetime
 
 def buildSieve(limit):
-
-    timeInitial = datetime.datetime.now()
 
     factors = [2]
 
@@ -15,8 +10,6 @@ def buildSieve(limit):
         for q in factors:
             if q % j == 0 and q != j:
                 factors.remove(q)
-    timeDelta = datetime.datetime.now() - timeInitial
-    print("It took " + str(timeDelta) + " for the sieve.")
     return factors
 
 while True:
