@@ -1,21 +1,9 @@
-# Problem 36
+def is_palindromic(num_str):
+    return num_str == num_str[::-1]
 
-def isPal(n):
-    n = str(n)
-    if n == n[::-1]: return True
-    return False
-
-def toBinary(i,n):
-	return tuple((0,1)[i>>j & 1] for j in xrange(n-1,-1,-1))
-
-def run():
-	total = 0
-	for i in range(1000001):
-		if isPal(i):
-			if isPal(int(bin(i))):
-				total += i
-
-	print total
-
-if __name__ == "__main__":
-	print toBinary(6)
+total = 0
+for i in xrange(1, 10**6):
+    if isPalindromic(str(i)) and isPalindromic(bin(i)[2:]):
+        total += i
+        
+print total
