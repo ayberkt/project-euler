@@ -1,0 +1,3 @@
+# Project Euler
+
+My solutions to Project Euler challenges. Some are quite ugly but they work though which is nice...
