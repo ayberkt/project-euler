@@ -1,5 +1,3 @@
-# This program implements a solution for the 4th Project Euler problem
-
 def isPal(n):
     n = str(n)
     if n == n[::-1]: return True

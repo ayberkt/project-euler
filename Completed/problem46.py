@@ -1,7 +1,4 @@
-# This program implements a solution for the 46th Project Euler problem.
-
 import math
-import datetime
 
 def isPrime(n):
     if n == 2: return True
@@ -25,7 +22,6 @@ def nextOddComp(n):
 		if not isPrime(n) and n % 2 != 0: 
 			return n
 
-timeInit = datetime.datetime.now()
 input = 9
 results = []
 while True:
@@ -37,4 +33,3 @@ while True:
 		print "Conjecture refuted: " + str(input)
 		break
 	results = []
-print datetime.datetime.now() - timeInit

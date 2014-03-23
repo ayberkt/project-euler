@@ -1,5 +1,3 @@
-# This script implements a solution for the 14th Project Euler problem.
-
 def countCol(n):
 	count = 1
 	while n > 1:

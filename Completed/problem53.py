@@ -1,7 +1,3 @@
-# This python script implements a solution for the 53rd project euler problem.
-
-#!/usr/local/bin/python
-
 from math import factorial
 
 def nCr(n,r):

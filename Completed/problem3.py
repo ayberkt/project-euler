@@ -1,5 +1,3 @@
-# This program implements a solution for the 3rd problem of Project Euler
-
 import math
 import datetime
 

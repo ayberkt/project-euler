@@ -2,9 +2,7 @@ import math
 
 def build_sieve(limit):
 
-    factors = [2]
-
-    for i in range (3, limit, 2): factors.append(i) #Creates the base of sieve.
+    factors = [2] + range(3, limit, 2)
 
     for j in range (3, int(math.sqrt(limit+1))): # Removes the multiples of all numbers up to limit.
         for q in factors:
@@ -14,5 +12,5 @@ def build_sieve(limit):
 
 while True:
     number = int(raw_input("Please input a number: "))
-    sieve = build_sieve(number) # Passes the sqrt of the number as the limit for sieve building.
+    sieve = build_sieve(number).
     print (sum(sieve))

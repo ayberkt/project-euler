@@ -1,5 +1,3 @@
-# This program implements a solution to the 55h Project Euler problem.
-
 def isPalindromic(n):
     if str(n) == str(n)[::-1]: 
     	return True
