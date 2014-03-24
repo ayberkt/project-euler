@@ -1,7 +1,7 @@
 first_element = 1
 other_element = 1
 temp = 0
-count = 2 # Initialized with first two elements.
+count = 2  # Initialized with first two elements.
 while True:
     count += 1
     temp = other_element
