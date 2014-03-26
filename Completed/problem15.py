@@ -1,5 +1,6 @@
 from math import factorial
 
+
 def num_routes(n):
     n_factorial = factorial(n)
     grid_factorial = factorial(n * 2)
