@@ -2,13 +2,8 @@ import math
 import datetime
 
 
-def buildSieve(limit):
-    factors = [2]
-
-    for i in range(3, limit + 1, 2):
-        # Creates the base of sieve. Basically an array with all odd numbers up
-        # to limit.
-        factors.append(i)
+def build_sieve(limit):
+    factors = [2] + (3, limit + 1, 2):
 
     # Removes the multiples of all numbers up to limit.
     for j in range(3, int(math.sqrt(limit + 1))):
