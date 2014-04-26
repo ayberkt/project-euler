@@ -1,3 +1,5 @@
+from functools import reduce
+
 def gcd(a, b):
     r = a % b
     if r == 0:
@@ -8,4 +10,4 @@ def gcd(a, b):
 def lcm(a, b):
     return a * b // gcd(a, b)
 
-print reduce(lcm, range(1, 21))
+print(reduce(lcm, range(1, 21)))
