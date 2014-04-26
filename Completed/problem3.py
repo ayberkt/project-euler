@@ -3,7 +3,7 @@ import datetime
 
 
 def build_sieve(limit):
-    factors = [2] + (3, limit + 1, 2):
+   factors = [2] + (3, limit + 1, 2)
 
     # Removes the multiples of all numbers up to limit.
     for j in range(3, int(math.sqrt(limit + 1))):
@@ -15,7 +15,7 @@ def build_sieve(limit):
 while True:
     number = int(raw_input("Please input a number: "))
     # Passes the sqrt of the number as the limit for sieve building.
-    sieve = buildSieve(int(math.sqrt(number)) + 1)
+    sieve = build_sieve(int(math.sqrt(number)) + 1)
 
     i = 0
     while number > 1:
@@ -27,5 +27,5 @@ while True:
             else:
                 i += 1
         except IndexError:
-            print "The number is prime."
+            print("The number is prime.")
             break

@@ -1,13 +1,7 @@
-import math
+from math import pow
 
+def square_of_sum(n): return pow((n * n + n) / 2, 2)
 
-def squareOfSum(n):
-    return math.pow((n * n + n) / 2, 2)
+def sum_of_squares(n): return (n * (n + 1) * (2 * n + 1)) / 6
 
-
-def sumOfSquares(n):
-    return (n * (n + 1) * (2 * n + 1)) / 6
-
-while True:
-    upperLimit = int(raw_input("Please enter the limit: "))
-    print squareOfSum(upperLimit) - sumOfSquares(upperLimit)
+print(square_of_sum(100) - sum_of_squares(100))
