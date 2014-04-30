@@ -3,9 +3,9 @@
 (use '[clojure.test :only (is)])
 
 (defn count-collatz
-  "Returns a vector [a b] where a is the 
+  "Returns a vector [a b] where b is the 
   number that initiated the sequence, and
-  b is the number of steps taken to reach 1."
+  a is the number of steps taken to reach 1."
   [input-num]
   (loop [num input-num count 1]
   (if (= num 1)
