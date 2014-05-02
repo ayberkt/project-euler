@@ -10,7 +10,7 @@
   (loop [num input-num count 1]
   (if (= num 1)
     (vector count input-num)
-    (do (if (= (mod num 2) 0)
+    (do (if (even? num)
       (recur (/    num 2)     (inc count))
       (recur (+ (* num 3) 1)  (inc count)))))))
 
