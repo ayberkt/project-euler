@@ -45,17 +45,20 @@ def tile_index(line_index, col_index):
 def solve():
     while True:
         for line_index in range(9):
+            print(first_grid)
             for col_index in range(9):
                 possibilites = set([str(i) for i in range(1, 10)])
                 possibilites.difference_update(set([i for i in line_at_index(line_index) if i != '0']))
                 possibilites.difference_update(set([i for i in column_at_index(col_index) if i != '0']))
-                possibilites.difference_update(set([i for i in tile_at_index(tile_index(line_index, col_index))]))
+                possibilites.difference_update(set([i for i in tile_at_index(tile_index(line_index, col_index)) if i != '0']))
 
                 if len(possibilites) == 1:
-                    first_grid[line_index] = first_grid[line_index].replace('0', str(list(possibilites)[0]))
+                    new_line = list(first_grid[line_index])
+                    new_line[col_index] = list(possibilites)[0]
+                    first_grid[line_index] = ''.join(new_line)
 
         if not len([line for line in first_grid if '0' in line]):
             return first_grid
 
 if __name__ == "__main__":
-    pass
+    solve()

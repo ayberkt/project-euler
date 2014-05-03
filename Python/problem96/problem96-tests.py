@@ -44,7 +44,9 @@ class FileReading(unittest.TestCase):
         self.assertEqual(p.tile_index(8, 8), 8)
         self.assertEqual(p.tile_index(3, 0), 3)
 
-    def test_solve(self):
+class Solving(unittest.TestCase):
+
+    def test_if_solved(self):
         solved_grid = p.solve()
         self.assertEqual(solved_grid, ['483921657', 
                                        '967345821',
@@ -55,6 +57,7 @@ class FileReading(unittest.TestCase):
                                        '372689514',
                                        '814253769',
                                        '695417382'])
+
 
 if __name__ == '__main__':
     unittest.main()
