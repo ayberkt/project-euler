@@ -11,7 +11,7 @@ def tile_at_index(index):
         lines = (0, 1, 2)
     elif index == 3 or index == 4 or index == 5:
         lines = (3, 4, 5)
-    elif index == 7 or index == 8 or index == 9:
+    elif index == 6 or index == 7 or index == 8:
         lines = (6, 7, 8)
     
     columns = [i + (index % 3) * 3 for i in (0, 1, 2)]
@@ -21,3 +21,41 @@ def tile_at_index(index):
         for column in columns:
             tile += first_grid[line][column]
     return tile
+
+def tile_index(line_index, col_index):
+    tile_index = 0
+
+    if line_index < 3:
+        tile_index = 0
+    elif 3 <= line_index < 6:
+        tile_index = 3
+    elif 6 <= line_index:
+        tile_index = 6
+
+    if col_index < 3:
+        tile_index += 0
+    elif 3 <= col_index < 6:
+        tile_index += 1
+    elif 6 <= col_index:
+        tile_index += 2
+
+    return tile_index
+
+
+def solve():
+    while True:
+        for line_index in range(9):
+            for col_index in range(9):
+                possibilites = set([str(i) for i in range(1, 10)])
+                possibilites.difference_update(set([i for i in line_at_index(line_index) if i != '0']))
+                possibilites.difference_update(set([i for i in column_at_index(col_index) if i != '0']))
+                possibilites.difference_update(set([i for i in tile_at_index(tile_index(line_index, col_index))]))
+
+                if len(possibilites) == 1:
+                    first_grid[line_index] = first_grid[line_index].replace('0', str(list(possibilites)[0]))
+
+        if not len([line for line in first_grid if '0' in line]):
+            return first_grid
+
+if __name__ == "__main__":
+    pass
