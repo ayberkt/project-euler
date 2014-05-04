@@ -1,13 +1,16 @@
 grids_file = open('sudoku.txt')
 
 first_grid = [list(line.strip()) for line in grids_file if 'Grid' not in line][0:9]
-for i in range(len(first_grid)):
-    new_line = []
-    for num_str in first_grid[i]:
-        new_line.append(int(num_str))
-    first_grid[i] = new_line
 
-print(first_grid)
+for j in range(len(first_grid)):
+    new_line = []
+    for num_str in first_grid[j]:
+        new_line.append(int(num_str))
+    first_grid[j] = new_line
+
+[print(line, end='\n') for line in first_grid]
+
+def grid_at_index(index): return [list(line.strip()) for line in grids_file if 'Grid' not in line][(index * 9):9 + (index * 9)]
 
 def line_at_index(index): return first_grid[index]
 
@@ -48,24 +51,23 @@ def tile_index(line_index, col_index):
 
     return tile_index
 
-
 def solve():
     while True:
+        # [print(line, end='\n') for line in first_first_grid]
         for line_index in range(9):
-            print(first_grid, line_index)
             for col_index in range(9):
-                possibilites = set([str(i) for i in range(1, 10)])
-                possibilites.difference_update(set([i for i in line_at_index(line_index) if i != '0']))
-                possibilites.difference_update(set([i for i in column_at_index(col_index) if i != '0']))
-                possibilites.difference_update(set([i for i in tile_at_index(tile_index(line_index, col_index)) if i != '0']))
+                possibilites = set([i for i in range(1, 10)])
+                possibilites.difference_update(set([i for i in line_at_index(line_index) if i != 0]))
+                possibilites.difference_update(set([i for i in column_at_index(col_index) if i != 0]))
+                possibilites.difference_update(set([i for i in tile_at_index(tile_index(line_index, col_index)) if i != 0]))
 
-                if len(possibilites) == 1:
+                if len(possibilites) == 1 and first_grid[line_index][col_index] == 0:
                     new_line = list(first_grid[line_index])
-                    new_line[col_index] = str(list(possibilites)[0])
-                    first_grid[line_index] = ''.join(new_line)
+                    new_line[col_index] = list(possibilites)[0]
+                    first_grid[line_index] = new_line
 
-        if not len([line for line in first_grid if '0' in line]):
+        if not len([line for line in first_grid if 0 in line]):
             return first_grid
 
-if __name__ == "__main__": pass
-    # solve()
+if __name__ == "__main__":
+    pass
