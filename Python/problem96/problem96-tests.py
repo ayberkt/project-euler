@@ -3,15 +3,15 @@ import problem96 as p
 
 class FileReading(unittest.TestCase):
 
-    lines_for_index = ((1, '900305001'),
-                       (8, '005010300'), 
-                       (5, '006708200'))
+    lines_for_index = ((1, [9,0,0,3,0,5,0,0,1]),
+                       (8, [0,0,5,0,1,0,3,0,0]), 
+                       (5, [0,0,6,7,0,8,2,0,0]))
 
-    columns_for_index = ((0, '090070080'),
-                         (8, '010080090'))
+    columns_for_index = ((0, [0,9,0,0,7,0,0,8,0]),
+                         (8, [0,1,0,0,8,0,0,9,0]))
 
-    tiles_for_index = ((0, '003900001'), 
-                       (8, '500009300'))
+    tiles_for_index = ((0, [0,0,3,9,0,0,0,0,1]), 
+                       (8, [5,0,0,0,0,9,3,0,0]))
 
     def test_file_read_correctly(self):
         self.assertEqual(p.first_grid, [[0,0,3,0,2,0,6,0,0],
