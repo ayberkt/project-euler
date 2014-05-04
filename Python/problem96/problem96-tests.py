@@ -26,6 +26,18 @@ class FileReading(unittest.TestCase):
     def test_file_read_correctly(self):
         self.assertEqual(p.first_grid, self.initial_grid)
 
+    def test_grid_at_index(self):
+        self.assertEqual(p.grid_at_index(0), self.initial_grid)
+        self.assertEqual(p.grid_at_index(1), [[2,0,0,0,8,0,3,0,0],
+                                                   [0,6,0,0,7,0,0,8,4],
+                                                   [0,3,0,5,0,0,2,0,9],
+                                                   [0,0,0,1,0,5,4,0,8],
+                                                   [0,0,0,0,0,0,0,0,0],
+                                                   [4,0,2,7,0,6,0,0,0],
+                                                   [3,0,1,0,0,7,0,4,0],
+                                                   [7,2,0,0,4,0,0,6,0],
+                                                   [0,0,4,0,1,0,0,0,3]])
+
     def test_line_at_index(self):
         for index, line in self.lines_for_index:
             test_line = p.line_at_index(index, self.initial_grid)

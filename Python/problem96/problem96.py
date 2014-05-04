@@ -8,15 +8,25 @@ for j in range(len(first_grid)):
         new_line.append(int(num_str))
     first_grid[j] = new_line
 
-[print(line, end='\n') for line in first_grid]
+# [print(line, end='\n') for line in first_grid]
 
-def grid_at_index(index): return [list(line.strip()) for line in grids_file if 'Grid' not in line][(index * 9):9 + (index * 9)]
+def grid_at_index(index):
+    with open('sudoku.txt') as grids_file:
+        init_grid = [list(line.strip()) for line in grids_file if 'Grid' not in line][(index * 9):9 + (index * 9)]
 
-def line_at_index(index): return first_grid[index]
+        for j in range(len(init_grid)):
+            new_line = []
+            for num_str in init_grid[j]:
+                new_line.append(int(num_str))
+            init_grid[j] = new_line
+        
+        return init_grid
 
-def column_at_index(index): return [line[index] for line in first_grid]
+def line_at_index(index, grid): return grid[index]
 
-def tile_at_index(index):
+def column_at_index(index, grid): return [line[index] for line in grid]
+
+def tile_at_index(index, grid):
     if index == 0 or index == 1 or index == 2:
         lines = (0, 1, 2)
     elif index == 3 or index == 4 or index == 5:
@@ -29,7 +39,7 @@ def tile_at_index(index):
     tile = []
     for line in lines:
         for column in columns:
-            tile.append(first_grid[line][column])
+            tile.append(grid[line][column])
     return tile
 
 def tile_index(line_index, col_index):
@@ -51,23 +61,30 @@ def tile_index(line_index, col_index):
 
     return tile_index
 
-def solve():
+def solve(grid):
     while True:
-        # [print(line, end='\n') for line in first_first_grid]
+        [print(line, end='\n\n') for line in grid]
+        print('\n* * * * * \n')
         for line_index in range(9):
             for col_index in range(9):
-                possibilites = set([i for i in range(1, 10)])
-                possibilites.difference_update(set([i for i in line_at_index(line_index) if i != 0]))
-                possibilites.difference_update(set([i for i in column_at_index(col_index) if i != 0]))
-                possibilites.difference_update(set([i for i in tile_at_index(tile_index(line_index, col_index)) if i != 0]))
+                if grid[line_index][col_index] == 0:
+                    possibilites = set([i for i in range(1, 10)])
 
-                if len(possibilites) == 1 and first_grid[line_index][col_index] == 0:
-                    new_line = list(first_grid[line_index])
-                    new_line[col_index] = list(possibilites)[0]
-                    first_grid[line_index] = new_line
+                    possibilites.difference_update(set(grid[line_index]))
 
-        if not len([line for line in first_grid if 0 in line]):
-            return first_grid
+                    possibilites.difference_update(set(column_at_index(col_index, grid)))
+
+                    possibilites.difference_update(set(tile_at_index(tile_index(line_index, col_index), grid)))
+
+                    if len(possibilites) == 1:
+                        print(possibilites, grid[line_index], grid[line_index][col_index])
+                        new_line = list(grid[line_index])
+                        new_line[col_index] = list(possibilites)[0]
+                        grid[line_index] = new_line
+
+        if sum([sum(line) for line in grid]) == 45 * 9:
+            return grid
 
 if __name__ == "__main__":
-    pass
+    # current_grid = grid_at_index(i)
+    [print(line, end='\n') for line in solve(grid_at_index(4))]
