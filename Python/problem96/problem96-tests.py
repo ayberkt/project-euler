@@ -14,15 +14,15 @@ class FileReading(unittest.TestCase):
                        (8, '500009300'))
 
     def test_file_read_correctly(self):
-        self.assertEqual(p.first_grid, ['003020600',
-                                       '900305001',
-                                       '001806400',
-                                       '008102900',
-                                       '700000008',
-                                       '006708200',
-                                       '002609500',
-                                       '800203009',
-                                       '005010300'])
+        self.assertEqual(p.first_grid, [[0,0,3,0,2,0,6,0,0],
+                                        [9,0,0,3,0,5,0,0,1],
+                                        [0,0,1,8,0,6,4,0,0],
+                                        [0,0,8,1,0,2,9,0,0],
+                                        [7,0,0,0,0,0,0,0,8],
+                                        [0,0,6,7,0,8,2,0,0],
+                                        [0,0,2,6,0,9,5,0,0],
+                                        [8,0,0,2,0,3,0,0,9],
+                                        [0,0,5,0,1,0,3,0,0]])
 
     def test_line_at_index(self):
         for index, line in self.lines_for_index:
