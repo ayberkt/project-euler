@@ -28,17 +28,17 @@ class FileReading(unittest.TestCase):
 
     def test_line_at_index(self):
         for index, line in self.lines_for_index:
-            test_line = p.line_at_index(index)
+            test_line = p.line_at_index(index, self.initial_grid)
             self.assertEqual(test_line, line)
 
     def test_columns_at_index(self):
         for index, column in self.columns_for_index:
-            test_column = p.column_at_index(index)
+            test_column = p.column_at_index(index, self.initial_grid)
             self.assertEqual(test_column, column)
 
     def test_tile_at_index(self):
         for index, tile in self.tiles_for_index:
-            test_tile = p.tile_at_index(index)
+            test_tile = p.tile_at_index(index, self.initial_grid)
             self.assertEqual(test_tile, tile)
 
     def test_tile_index(self):
@@ -59,7 +59,7 @@ class Solving(unittest.TestCase):
                     [0,0,5,0,1,0,3,0,0]]
 
     def test_if_solved(self):
-        solved_grid = p.solve()
+        solved_grid = p.solve(self.initial_grid)
         self.assertEqual(solved_grid, [[4,8,3,9,2,1,6,5,7], 
                                        [9,6,7,3,4,5,8,2,1],
                                        [2,5,1,8,7,6,4,9,3],
