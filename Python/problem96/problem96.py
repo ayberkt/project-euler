@@ -1,3 +1,5 @@
+from itertools import permutations
+
 grids_file = open('sudoku.txt')
 
 first_grid = [list(line.strip()) for line in grids_file if 'Grid' not in line][0:9]
@@ -85,6 +87,20 @@ def solve(grid):
         if sum([sum(line) for line in grid]) == 45 * 9:
             return grid
 
+def line_valid(line_candidate, line_index, grid):
+    for cell_index in range(len(line_candidate)):
+        if grid[line_index][cell_index] != 0 and grid[line_index][cell_index] == line_candidate[cell_index]:
+            print("Returning false since {0} is not equal to {1}".format(line_candidate[cell_index], grid[line_index][cell_index]))
+            return False
+        if line_candidate[cell_index] in set(tile_at_index(tile_index(line_index, cell_index), grid)):
+            return False
+        if line_candidate[cell_index] in set(column_at_index(cell_index, grid)):
+            return False
+
+    return True
+
+
 if __name__ == "__main__":
     # current_grid = grid_at_index(i)
-    [print(line, end='\n') for line in solve(grid_at_index(4))]
+    
+    [line for line in permutations(range(1, 10)) if line_valid(line)]
