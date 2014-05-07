@@ -23,15 +23,12 @@ grid = [[int(num) for num in line.split(' ')] for line in number_grid]
 reversed_grid = [line[::-1] for line in grid]
 
 greatest = 0
-
 for index in range(20):
-    candidate_products = (max_sum_consecutive(grid[index]),
-                          max_sum_consecutive(column_at_index(index, grid)),
-                          max_sum_consecutive(diagonal_at_index(index, 0, grid)),
-                          max_sum_consecutive(diagonal_at_index(0, index, grid)),
-                          max_sum_consecutive(diagonal_at_index(0, index, reversed_grid)),
-                          max_sum_consecutive(diagonal_at_index(index, 0, reversed_grid)))
-    max_product = max(candidate_products)
+    max_product = max(max_sum_consecutive(grid[index]),
+                      max_sum_consecutive(column_at_index(index, grid)),
+                      max_sum_consecutive(diagonal_at_index(index, 0, grid)),
+                      max_sum_consecutive(diagonal_at_index(0, index, grid)),
+                      max_sum_consecutive(diagonal_at_index(0, index, reversed_grid)),
+                      max_sum_consecutive(diagonal_at_index(index, 0, reversed_grid)))
     if max_product > greatest: greatest = max_product
-
 print(greatest)
