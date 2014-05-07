@@ -1,5 +1,4 @@
-from operator import mul
-from functools import reduce
+from operator import mul; from functools import reduce
 
 def column_at_index(index, grid): return [line[index] for line in grid]
 
@@ -10,8 +9,7 @@ def diagonal_at_index(line_index, column_index, grid):
             diagonal.append(grid[line_index][column_index])
         except IndexError:
             return diagonal
-        line_index += 1
-        column_index += 1
+        line_index += 1; column_index += 1
 
 def max_sum_consecutive(num_list):
     greatest = 0
@@ -22,37 +20,18 @@ def max_sum_consecutive(num_list):
 
 number_grid = open('grid.txt').readlines()
 grid = [[int(num) for num in line.split(' ')] for line in number_grid]
+reversed_grid = [line[::-1] for line in grid]
 
 greatest = 0
 
-for line in grid:
-    max_product = max_sum_consecutive(line)
+for index in range(20):
+    candidate_products = (max_sum_consecutive(grid[index]),
+                          max_sum_consecutive(column_at_index(index, grid)),
+                          max_sum_consecutive(diagonal_at_index(index, 0, grid)),
+                          max_sum_consecutive(diagonal_at_index(0, index, grid)),
+                          max_sum_consecutive(diagonal_at_index(0, index, reversed_grid)),
+                          max_sum_consecutive(diagonal_at_index(index, 0, reversed_grid)))
+    max_product = max(candidate_products)
     if max_product > greatest: greatest = max_product
-
-for column in [column_at_index(index, grid) for index in range(20)]:
-    max_product = max_sum_consecutive(column)
-    if max_product > greatest: greatest = max_product
-
-for diagonal in [diagonal_at_index(index, 0, grid) for index in range(20)]:
-    max_product = max_sum_consecutive(diagonal)
-    if max_product > greatest: greatest = max_product
-
-for diagonal in [diagonal_at_index(0, index, grid) for index in range(20)]:
-    max_product = max_sum_consecutive(diagonal)
-    print(diagonal)
-    if max_product > greatest: greatest = max_product
-
-grid = [line[::-1] for line in grid]
-
-for diagonal in [diagonal_at_index(index, 0, grid) for index in range(20)]:
-    max_product = max_sum_consecutive(diagonal)
-    if max_product > greatest: greatest = max_product
-
-for diagonal in [diagonal_at_index(0, index, grid) for index in range(20)]:
-    max_product = max_sum_consecutive(diagonal)
-    print(diagonal)
-    if max_product > greatest: greatest = max_product
-
-
 
 print(greatest)
