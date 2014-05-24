@@ -3,7 +3,7 @@
 (define prime?
   (case-lambda
     ((num) 
-     (prime? num (cddr (iota (inexact->exact (+ (ceiling (sqrt num)) 1))))))
+     (prime? num (cddr (iota (inexact->exact (add1 (ceiling (sqrt num))))))))
     ((num test-seq)
      (if (null? test-seq)
          #t ;; num is a prime if test-list is exhausted
