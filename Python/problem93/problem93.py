@@ -1,27 +1,24 @@
-from itertools import combinations, permutations, combinations_with_replacement
-from operator import add, sub, mul, truediv
+from itertools import combinations, permutations, combinations_with_replacement, product
+from operator import add, sub, mul, floordiv, truediv
 from copy import copy
 
 
-def div(x, y):
-    return round(truediv(x, y))
-
+# div = floordiv
+def div(a, b):
+    return round(truediv(a, b))
 
 DIGITS = list(range(1, 10))
 OPS = [add, sub, mul, div]
 
+
+def permutations_with_replacement(iterable, selection):
+    return list(product(iterable, repeat=selection))
+
+
 op_combinations = [list(op_comb) for op_comb
-                   in combinations_with_replacement(OPS, 3)]
+                   in permutations_with_replacement(OPS, 3)]
 digit_combinations = [list(digit_comb) for digit_comb in combinations(DIGITS, 4)
                       if (lambda x: x[0] < x[1] < x[2] < x[3])(digit_comb)]
-
-
-def consecutive(l):
-    l = list(set(l))
-    for i in range(len(l) - 1):
-        if l[i+1] - l[i] != 1:
-            return False
-    return True
 
 
 def consecutive_seq(l):
@@ -83,3 +80,14 @@ def target_numbers(digits):
 
                 results.update(temp_results)
         return [num for num in list(results) if num > 0]
+
+if __name__ == '__main__':
+    max = 0
+    max_digit_comb = 0
+    for digit_comb in digit_combinations:
+        consec = len(consecutive_seq(target_numbers(digit_comb)))
+        if  consec > max:
+            max = consec
+            max_digit_comb = digit_comb
+    print(max_digit_comb)
+
