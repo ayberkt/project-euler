@@ -1,11 +1,14 @@
-from itertools import combinations, permutations, product
-from operator import add, sub, mul, floordiv
+from itertools import permutations, product
+from operator import add, sub, mul
+
 
 def div(a, b):
     try:
         if a % b == 0:
             return round(a / b)
-    except ZeroDivisionError: pass
+    except ZeroDivisionError:
+        pass
+
     return 0
 
 
