@@ -1,10 +1,5 @@
 from functools import reduce
-
-def gcd(a, b):
-    r = a % b
-    if r == 0:
-        return b
-    return gcd(b, r)
+from fractions import gcd
 
 
 def lcm(a, b):
