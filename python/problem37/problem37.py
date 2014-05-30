@@ -1,4 +1,4 @@
-import math
+from math import sqrt
 
 
 def is_prime(n):
@@ -7,7 +7,7 @@ def is_prime(n):
     if n == 1:
         return False
 
-    test_nums = range(2, int(math.sqrt(n)) + 2)
+    test_nums = range(2, int(sqrt(n)) + 2)
     for i in test_nums:
         if n % i == 0:
             return False
