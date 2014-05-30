@@ -27,16 +27,9 @@ def truncations(num_str):
 
 
 def truncatable_prime(num):
+    return is_prime(num) and all([is_prime(int(n))
+                                  for n in truncations(str(num))])
 
-    if not is_prime(num):
-        return False
-
-    for n in [int(n) for n in truncations(str(num))]:
-
-        if not is_prime(n):
-            return False
-
-    return True
 
 if __name__ == '__main__':
 
