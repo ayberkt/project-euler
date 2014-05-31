@@ -39,11 +39,13 @@ def rotations(num):
 
 
 def rotational_prime(num):
+    if '5' in str(num) or '2' in str(num):
+        return False
+
     return all([is_prime(n) for n in rotations(num)])
 
 
 if __name__ == '__main__':
-    rotational_primes = [2] + [n for n in range(1, 1000000, 2)
+    rotational_primes = [2, 3, 5, 7] + [n for n in range(11, 1000000, 2)
                                if rotational_prime(n)]
-    print(rotational_primes)
     print(len(rotational_primes))
