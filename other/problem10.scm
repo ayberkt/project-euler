@@ -8,16 +8,7 @@
        (else (cond
                ((zero? (modulo x (car test-seq))) #f)
                 (else (prime? x (cdr test-seq))))))]))
-(define memoize
-  (lambda (proc)
-    (let ([cache '()])
-      (lambda (x)
-        (cond
-          [(assq x cache) => cdr]
-          [else
-           (let ([ans (proc x)])
-             (set! cache (cons (cons x ans) cache))
-             ans)]))))) 
 
-
-(display (fold-left + 0 (filter prime? (cddr (iota 2000000)))))
+(display
+    (fold-left + 0
+        (filter prime? (cddr (iota 2000000)))))
