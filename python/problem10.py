@@ -11,6 +11,5 @@ def build_sieve(limit):
     return factors
 
 while True:
-    number = int(raw_input("Please input a number: "))
-    sieve = build_sieve(number).
+    sieve = build_sieve(2000000)
     print (sum(sieve))
