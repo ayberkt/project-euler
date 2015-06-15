@@ -2,3 +2,5 @@ __pycache__
 *.pyc
 rename.py
 .ropeproject
+*.hi
+*.out
