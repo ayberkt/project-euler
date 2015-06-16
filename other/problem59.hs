@@ -1,7 +1,6 @@
 import Data.Char (ord, chr, isAlpha, isSpace, isPunctuation)
 import Data.Bits (xor)
 import Data.List.Split (splitOn)
-import System.IO
 import Data.List
 
 extendKey :: String -> Int -> String
