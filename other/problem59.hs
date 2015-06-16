@@ -14,9 +14,8 @@ decrypt crypt key = map chr $ zipWith xor crypt
                                       (map ord $ extendKey key (length crypt))
 
 possibleDecryptions :: [Int] -> [String]
-possibleDecryptions message = let alphabet = ['a'..'z']
-                                  keys = [[a,b,c] | a <- alphabet, b <- alphabet, c <- alphabet] in
-  map (decrypt message) keys
+possibleDecryptions message = map (decrypt message) keys
+  where keys = [[a,b,c] | a <- ['a'..'z'], b <- ['a'..'z'], c <- ['a'..'z']]
 
 findAsciiSum text = sum $ map ord text
 main = do
