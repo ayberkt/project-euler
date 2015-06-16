@@ -19,8 +19,7 @@ possibleDecryptions message = map (decrypt message) keys
 
 findAsciiSum text = sum $ map ord text
 main = do
-  handle <- openFile "cipher.txt" ReadMode
-  contents <- hGetContents handle
+  contents <- readFile "cipher.txt"
   let cipher = map (\n -> read n :: Int) $ splitOn "," contents
       decryptedMessage = head $ filter (isInfixOf " and ") $ possibleDecryptions cipher
   putStrLn $ "ASCII sum is " ++ show (findAsciiSum decryptedMessage)
