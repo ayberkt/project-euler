@@ -10,8 +10,8 @@ extendKey key messageLength = let quotient = messageLength `div` length key
   concat $ (replicate quotient key) ++ [(take remainder key)]
 
 decrypt :: [Int] -> String -> String
-decrypt crypt key = map chr $ zipWith xor crypt
-                                      (map ord $ extendKey key (length crypt))
+decrypt crypt key = map chr $ zipWith xor crypt $
+                                      map ord $ extendKey key $ length crypt
 
 possibleDecryptions :: [Int] -> [String]
 possibleDecryptions message = map (decrypt message) keys
