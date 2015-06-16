@@ -16,9 +16,8 @@ possibleDecryptions :: [Int] -> [String]
 possibleDecryptions message = map (decrypt message) keys
   where keys = [[a,b,c] | a <- ['a'..'z'], b <- ['a'..'z'], c <- ['a'..'z']]
 
-findAsciiSum text = sum $ map ord text
 main = do
   contents <- readFile "cipher.txt"
   let cipher = map (\n -> read n :: Int) $ splitOn "," contents
       decryptedMessage = head $ filter (isInfixOf " and ") $ possibleDecryptions cipher
-  putStrLn $ "ASCII sum is " ++ show (findAsciiSum decryptedMessage)
+  putStrLn $ "ASCII sum is " ++ show (sum $ map ord decryptedMessage)
