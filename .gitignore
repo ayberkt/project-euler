@@ -4,3 +4,4 @@ rename.py
 .ropeproject
 *.hi
 *.out
+*.o
