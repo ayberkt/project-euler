@@ -5,3 +5,4 @@ rename.py
 *.hi
 *.out
 *.o
+*.hi
