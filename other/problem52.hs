@@ -1,10 +1,5 @@
 import Data.Set (Set, fromList, union, empty)
 
-consistsOfSameDigits :: Int -> Int -> Bool
-consistsOfSameDigits x y
-  | x == y = True
-  | otherwise = digits x == digits y
-
 digits :: Int -> Set Int
 digits x = fromList $ makeDigitList x
   where makeDigitList n
