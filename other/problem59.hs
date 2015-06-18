@@ -4,9 +4,10 @@ import Data.List.Split (splitOn)
 import Data.List
 
 extendKey :: String -> Int -> String
-extendKey key messageLength = let quotient = messageLength `div` length key
-                                  remainder = messageLength `mod` length key in
-  concat $ (replicate quotient key) ++ [(take remainder key)]
+extendKey key messageLength = concat $ (replicate quotient key) ++ [(take remainder key)]
+  where quotient = messageLength `div` length key
+        remainder = messageLength `mod` length key
+
 
 decrypt :: [Int] -> String -> String
 decrypt crypt key = map chr $ zipWith xor crypt $
