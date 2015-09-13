@@ -1,3 +1,5 @@
+import Data.List (elemIndex)
+
 data Day = Monday
          | Tuesday
          | Wednesday
@@ -5,8 +7,8 @@ data Day = Monday
          | Friday
          | Saturday
          | Sunday
-         deriving (Show)
-
+         deriving (Show, Eq, Ord)
+                    
 instance Enum Day where
     succ Monday    = Tuesday
     succ Tuesday   = Wednesday
@@ -20,16 +22,20 @@ instance Enum Day where
     pred Sunday    = Saturday
     pred Saturday  = Friday
     pred Friday    = Thursday
-    pred Thursday   = Wednesday
+    pred Thursday  = Wednesday
     pred Wednesday = Tuesday
     pred Tuesday   = Monday
 
     enumFrom day = iterate succ day
+    
+    fromEnum day = case day `elemIndex` [Monday ..] of
+      Just n  -> n
+
+    toEnum n = (enumFrom Monday) !! n
 
 
-after :: Int -> Day -> Day
-after numDays = let shift = (numDays `rem` 7) + 1 in
-  last . take shift . iterate succ
+daysAfter :: Int -> Day -> Day
+daysAfter n day = [day ..] !! n
              
            
 leapYear :: Int -> Bool
