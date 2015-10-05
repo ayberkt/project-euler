@@ -20,6 +20,6 @@ maxLength a b n
 main :: IO ()
 main = do
   let sequences = [(maxLength a b 0, a, b) | a <- [(-1000)..1000]
-                                           , b <- [(-1000)..1000]]
+                                           , b <- [(-999), (-997)..999]]
       (_, a, b) = foldr findMax (0, 0, 0) sequences
   print $ a * b
